@@ -4,15 +4,18 @@ import { Post } from '../../types/Post';
 
 interface Props {
   posts: Post[];
+  onSelect: (post: Post | null) => void;
 }
 
-export const PostsList: React.FC<Props> = ({ posts }) => {
+export const PostsList: React.FC<Props> = ({ posts, onSelect }) => {
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
 
   const handleOnClick = (post: Post) => {
-    setSelectedPost(prevPost =>
-      prevPost && prevPost.id === post.id ? null : post,
-    );
+    const newSelectedPost =
+      selectedPost && selectedPost.id === post.id ? null : post;
+
+    setSelectedPost(newSelectedPost);
+    onSelect(newSelectedPost);
   };
 
   return (

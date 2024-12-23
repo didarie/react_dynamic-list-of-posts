@@ -4,7 +4,7 @@ import { User } from '../../types/User';
 
 interface Props {
   users: User[];
-  onSelect: (user: User) => void;
+  onSelect: (id: number) => void;
 }
 
 export const UserSelector: React.FC<Props> = ({ users, onSelect }) => {
@@ -15,7 +15,7 @@ export const UserSelector: React.FC<Props> = ({ users, onSelect }) => {
   const handleOnSelect = (user: User) => {
     setIsActive(false);
     setSelectedUser(user);
-    onSelect(user);
+    onSelect(user.id);
   };
 
   const handleOnBlur = (event: React.FocusEvent) => {
